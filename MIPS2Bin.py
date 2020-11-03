@@ -35,7 +35,7 @@ for x in f:
 f.close()
 
 f = open("archivo.txt", "r")
-
+vacio = ""
 for x in f:
     
     if(x.count('j') and x.count('jr') == 0):
@@ -46,11 +46,14 @@ for x in f:
     
     elif(x.lower().count('beq')):
         x = x[0:x.rfind(',')+2] + "0x" + str(saltos[x[x.rfind(',')+1::].strip()])
-    
+    vacio += getTranslation(x,pasada2)+"\n"
     print(getTranslation(x,pasada2))
     pasada2+=1
+out = open("o.txt","w")
+out.write(vacio)
 
 for i in range(pasada2,32):
+    out.write("arr(" + str(i) + ") <= \"00000000000000000000000000000000\";\n")
     print("arr(" + str(i) + ") <= \"00000000000000000000000000000000\";")
         
 f.close()
