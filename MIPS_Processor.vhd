@@ -93,14 +93,8 @@ end Sign_extender;
 
 architecture Behavioral of Sign_extender is
 	begin
-		Process(A(15)) is
-			begin
-				if(A(15) = '1') then
-					B <= "1111111111111111" & A(15 DOWNTO 0);
-				else 
-					B <= "0000000000000000" & A(15 DOWNTO 0);
-				end if;
-			end process;
+		B <= x"FFFF" & A when (A(15) = '1') else
+			  x"0000" & A;
 end Behavioral;
 
 library IEEE;
@@ -215,38 +209,38 @@ architecture Behavioral of MemoriaDeInstrucciones is
 	 signal arr_i : STD_LOGIC_VECTOR(4 downto 0);
     begin
 	 
-		  arr(0) <= "00100001001010100101100000100000";
-        arr(1) <= "00000001001010100101100000100010";
-        arr(3) <= "10001101001010100101100000100000";
-        arr(2) <= x"00000002";
-        arr(4) <= x"00000004";
-        arr(5) <= x"00000005";
-        arr(6) <= x"00000006";
-        arr(7) <= x"00000007";
-        arr(8) <= x"00000008";
-        arr(9) <= x"00000009";
-        arr(10) <= x"00000010";
-        arr(11) <= x"00000011";
-        arr(12) <= x"00000012";
-        arr(13) <= x"00000013";
-        arr(14) <= x"00000014";
-        arr(15) <= x"00000015";
-        arr(16) <= x"00000016";
-        arr(17) <= x"00000017";
-        arr(18) <= x"00000018";
-        arr(19) <= x"00000019";
-        arr(20) <= x"00000020";
-        arr(21) <= x"00000021";
-        arr(22) <= x"00000022";
-        arr(23) <= x"00000023";
-        arr(24) <= x"00000024";
-        arr(25) <= x"00000025";
-        arr(26) <= x"00000026";
-        arr(27) <= x"00000027";
-        arr(28) <= x"00000028";
-        arr(29) <= x"00000029";
-        arr(30) <= x"00000030";
-        arr(31) <= x"00000031";
+		arr(0) <= "00000000000000000100000000100000";
+	arr(1) <= "10001100000000010000000000000000";
+	arr(2) <= "10001100000000100000000000000100";
+	arr(3) <= "10001100000000110000000000001000";
+	arr(4) <= "00000000010000010001100000100000";
+	arr(5) <= "00000000010000010010000000100101";
+	arr(6) <= "00000000010000010010100000100010";
+	arr(7) <= "00000000010000010011000000100100";
+	arr(8) <= "00001000000000000000000000001010";
+	arr(9) <= "00100001000010000000000000000001";
+	arr(10) <= "00000000000010000011100000101010";
+	arr(11) <= "00010000111010001111111111111101";
+	arr(12) <= "00111100000010010010000000000000";
+	arr(13) <= "00110101001010010000000000010100";
+	arr(14) <= "10101101001010000000000000000000";
+	arr(15) <= "10001101001010100000000000000000";
+	arr(16) <= "00000000000000000000000000001000";
+	arr(17) <= "00000000000000000000000000000000";
+	arr(18) <= "00000000000000000000000000000000";
+	arr(19) <= "00000000000000000000000000000000";
+	arr(20) <= "00000000000000000000000000000000";
+	arr(21) <= "00000000000000000000000000000000";
+	arr(22) <= "00000000000000000000000000000000";
+	arr(23) <= "00000000000000000000000000000000";
+	arr(24) <= "00000000000000000000000000000000";
+	arr(25) <= "00000000000000000000000000000000";
+	arr(26) <= "00000000000000000000000000000000";
+	arr(27) <= "00000000000000000000000000000000";
+	arr(28) <= "00000000000000000000000000000000";
+	arr(29) <= "00000000000000000000000000000000";
+	arr(30) <= "00000000000000000000000000000000";
+	arr(31) <= "00000000000000000000000000000000";
 		  
 		  arr_i <= READ_ADRESS(6 downto 2);
 		  INSTRUCTION <= arr(to_integer(unsigned(arr_i)));
@@ -278,6 +272,9 @@ architecture Behavioral of MemoriaDeDatos is
 		process(ENABLE,CLK,WRITE_ENABLE,READ_ENABLE,arr_i) 
 			type arreglo is array (0 to 31) of STD_LOGIC_VECTOR(0 to 31);
 			VARIABLE arr : arreglo :=(
+				x"00000001",
+				x"00000002",
+				x"00000003",
 				others => (others => '0')
 			);
 			begin
@@ -715,21 +712,52 @@ end component;
 	signal ALUCntr : STD_LOGIC_VECTOR(2 downto 0) := (others => '0');
 	signal Jr : STD_LOGIC := '0';
 	
+	signal PC_4 : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
+	signal SIGN_EXTENDED_SHIFT : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
+	signal PC_4_SHIFT : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
+	signal Branch_Sel : STD_LOGIC := '0';
+	signal BranchMux : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
+	signal INSTRUCTION_SHIFT : STD_LOGIC_VECTOR(27 downto 0) := (others => '0');
+	signal Jump_Address : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
+	signal JumpMux : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
+	signal PC_BACK : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
+	
 begin
 
-	INSTRUCTION <= x"00000004" + 4;
+	INSTRUCTION <= x"00000004";
+	
 	MemoriaDeInstrucciones_tag : MemoriaDeInstrucciones port map(INSTRUCTION_Aux,INSTRUCTION_OUT);
-	MemoriaDeDatos_tag : MemoriaDeDatos port map('0',MemWrite,INSTRUCTION,CLK,INSTRUCTION,MemRead,Read_Data_Mem);
+	MemoriaDeDatos_tag : MemoriaDeDatos port map('0',MemWrite,ALUOUT,CLK,REGISTER2,MemRead,Read_Data_Mem);
 	Mux2_1_32tag2 : Mux2_1_32 port map(ALUOUT,Read_Data_Mem,MemToReg,Write_Data_Aux);
 	RegisterFile_tag : RegisterFile port map(Write_Register_Aux,RegWrite,CLK,Write_Data_Aux,INSTRUCTION_OUT(25 DOWNTO 21),INSTRUCTION_OUT(20 DOWNTO 16),REGISTER1,REGISTER2);
 	Mux2_1_5_tag : Mux2_1_5 port map (INSTRUCTION_OUT(20 DOWNTO 16),INSTRUCTION_OUT(15 DOWNTO 11),RegDst,Write_Register_Aux);
 	ControlUnit_tag : ControlUnit port map(INSTRUCTION_OUT(31 DOWNTO 26),RegDst,Jump,Branch,MemRead,MemToReg,ALUop,MemWrite,AluSrc,RegWrite);
-	ProgramCounter : Program_Counter port map(INSTRUCTION,INSTRUCTION_AUX,RESET,CLK);
+	
+	ProgramCounter : Program_Counter port map(PC_BACK,INSTRUCTION_AUX,RESET,CLK);
 	
 	ALUControl_Tag : ALUControl port map(INSTRUCTION_OUT(5 downto 0),ALUop,ALUCntr,Jr);
 	ALU_Tag : ALU port map(REGISTER1,ALU_SOURCE,ALUCntr,zero,ALUOUT);
 	Sign_Extender_Tag : Sign_Extender port map(INSTRUCTION_OUT(15 DOWNTO 0),SIGN_EXTENDED);
 	Mux2_1_32_tag1 : Mux2_1_32 port map(REGISTER2,SIGN_EXTENDED,ALUsrc,ALU_SOURCE);
+	
+	PC_ADD : ADD port map(INSTRUCTION_Aux,x"00000004",PC_4);
+	
+	ShiftLeft_Tag : ShiftLeft2 port map(SIGN_EXTENDED,SIGN_EXTENDED_SHIFT);
+	PC_4_SHIFT_Tag : ADD port map(SIGN_EXTENDED_SHIFT,PC_4,PC_4_SHIFT);
+	Branch_Sel <= Branch AND zero;
+	BranchMux_Tag : Mux2_1_32 port map(PC_4,PC_4_SHIFT,Branch_Sel,BranchMux);
+	
+	InstructionShitf : ShiftLeft2_26 port map(INSTRUCTION_OUT(25 downto 0),INSTRUCTION_SHIFT);
+	Jump_Address <= PC_4(31 downto 28) & INSTRUCTION_SHIFT(27 downto 0);
+	
+	JumpMux_Tag : Mux2_1_32 port map(BranchMux,Jump_Address,Jump,JumpMux);
+	Jr_Tag: Mux2_1_32 port map(JumpMux,REGISTER1,Jr,PC_BACK);
+	
+	
+	
+	
+	
+	INSTRUCTION_OUT3 <= x"00000000";
 	
 	
 	
