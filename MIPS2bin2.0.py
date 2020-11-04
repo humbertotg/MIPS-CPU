@@ -109,7 +109,7 @@ def p_MAIN(p):
     A : TAG JR REG A
     |
     '''
-
+    global result
     if(len(p) > 1):
         inst = ""
         if(not isRType(p[2])):
@@ -167,6 +167,8 @@ def p_MAIN(p):
             inst += funct[p[2]]
         inst = "arr(" + str(p.lineno(2) - 1) + ") <= \"" + inst + "\";"
         print(inst)
+        result += inst + "\n"
+        
 def p_TAG(p):
     '''
     TAG : ID TWOP
@@ -182,10 +184,15 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-file1 = open('code.txt','r')
+file1 = open('archivo.txt','r')
 info = file1.read()
-parser.parse(info)
+out = open("o.txt","w")
+result = ""
 
+parser.parse(info)
+out.write(result)
+out.close()
+file1.close()
 print(tags)
 
 

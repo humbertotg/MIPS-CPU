@@ -1,0 +1,1151 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> A
+Rule 1     A -> TAG ADD REG COMA REG COMA REG A
+Rule 2     A -> TAG SUB REG COMA REG COMA REG A
+Rule 3     A -> TAG AND REG COMA REG COMA REG A
+Rule 4     A -> TAG OR REG COMA REG COMA REG A
+Rule 5     A -> TAG SLT REG COMA REG COMA REG A
+Rule 6     A -> TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+Rule 7     A -> TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+Rule 8     A -> TAG BEQ REG COMA REG COMA ID A
+Rule 9     A -> TAG J ID A
+Rule 10    A -> TAG ADDI REG COMA REG COMA IMME A
+Rule 11    A -> TAG ORI REG COMA REG COMA IMME A
+Rule 12    A -> TAG LUI REG COMA IMME A
+Rule 13    A -> TAG JR REG A
+Rule 14    A -> <empty>
+Rule 15    TAG -> ID TWOP
+Rule 16    TAG -> <empty>
+
+Terminals, with rules where they appear
+
+ADD                  : 1
+ADDI                 : 10
+AND                  : 3
+BEQ                  : 8
+CLOSEPAR             : 6 7
+COMA                 : 1 1 2 2 3 3 4 4 5 5 6 7 8 8 10 10 11 11 12
+ID                   : 8 9 15
+IMME                 : 6 7 10 11 12
+J                    : 9
+JR                   : 13
+LUI                  : 12
+LW                   : 6
+OPENPAR              : 6 7
+OR                   : 4
+ORI                  : 11
+REG                  : 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 7 7 8 8 10 10 11 11 12 13
+SLT                  : 5
+SUB                  : 2
+SW                   : 7
+TWOP                 : 15
+error                : 
+
+Nonterminals, with rules where they appear
+
+A                    : 1 2 3 4 5 6 7 8 9 10 11 12 13 0
+TAG                  : 1 2 3 4 5 6 7 8 9 10 11 12 13
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    A                              shift and go to state 1
+    TAG                            shift and go to state 2
+
+state 1
+
+    (0) S' -> A .
+
+
+
+state 2
+
+    (1) A -> TAG . ADD REG COMA REG COMA REG A
+    (2) A -> TAG . SUB REG COMA REG COMA REG A
+    (3) A -> TAG . AND REG COMA REG COMA REG A
+    (4) A -> TAG . OR REG COMA REG COMA REG A
+    (5) A -> TAG . SLT REG COMA REG COMA REG A
+    (6) A -> TAG . LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> TAG . SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> TAG . BEQ REG COMA REG COMA ID A
+    (9) A -> TAG . J ID A
+    (10) A -> TAG . ADDI REG COMA REG COMA IMME A
+    (11) A -> TAG . ORI REG COMA REG COMA IMME A
+    (12) A -> TAG . LUI REG COMA IMME A
+    (13) A -> TAG . JR REG A
+
+    ADD             shift and go to state 4
+    SUB             shift and go to state 5
+    AND             shift and go to state 6
+    OR              shift and go to state 7
+    SLT             shift and go to state 8
+    LW              shift and go to state 9
+    SW              shift and go to state 10
+    BEQ             shift and go to state 11
+    J               shift and go to state 12
+    ADDI            shift and go to state 13
+    ORI             shift and go to state 14
+    LUI             shift and go to state 15
+    JR              shift and go to state 16
+
+
+state 3
+
+    (15) TAG -> ID . TWOP
+
+    TWOP            shift and go to state 17
+
+
+state 4
+
+    (1) A -> TAG ADD . REG COMA REG COMA REG A
+
+    REG             shift and go to state 18
+
+
+state 5
+
+    (2) A -> TAG SUB . REG COMA REG COMA REG A
+
+    REG             shift and go to state 19
+
+
+state 6
+
+    (3) A -> TAG AND . REG COMA REG COMA REG A
+
+    REG             shift and go to state 20
+
+
+state 7
+
+    (4) A -> TAG OR . REG COMA REG COMA REG A
+
+    REG             shift and go to state 21
+
+
+state 8
+
+    (5) A -> TAG SLT . REG COMA REG COMA REG A
+
+    REG             shift and go to state 22
+
+
+state 9
+
+    (6) A -> TAG LW . REG COMA IMME OPENPAR REG CLOSEPAR A
+
+    REG             shift and go to state 23
+
+
+state 10
+
+    (7) A -> TAG SW . REG COMA IMME OPENPAR REG CLOSEPAR A
+
+    REG             shift and go to state 24
+
+
+state 11
+
+    (8) A -> TAG BEQ . REG COMA REG COMA ID A
+
+    REG             shift and go to state 25
+
+
+state 12
+
+    (9) A -> TAG J . ID A
+
+    ID              shift and go to state 26
+
+
+state 13
+
+    (10) A -> TAG ADDI . REG COMA REG COMA IMME A
+
+    REG             shift and go to state 27
+
+
+state 14
+
+    (11) A -> TAG ORI . REG COMA REG COMA IMME A
+
+    REG             shift and go to state 28
+
+
+state 15
+
+    (12) A -> TAG LUI . REG COMA IMME A
+
+    REG             shift and go to state 29
+
+
+state 16
+
+    (13) A -> TAG JR . REG A
+
+    REG             shift and go to state 30
+
+
+state 17
+
+    (15) TAG -> ID TWOP .
+
+    ADD             reduce using rule 15 (TAG -> ID TWOP .)
+    SUB             reduce using rule 15 (TAG -> ID TWOP .)
+    AND             reduce using rule 15 (TAG -> ID TWOP .)
+    OR              reduce using rule 15 (TAG -> ID TWOP .)
+    SLT             reduce using rule 15 (TAG -> ID TWOP .)
+    LW              reduce using rule 15 (TAG -> ID TWOP .)
+    SW              reduce using rule 15 (TAG -> ID TWOP .)
+    BEQ             reduce using rule 15 (TAG -> ID TWOP .)
+    J               reduce using rule 15 (TAG -> ID TWOP .)
+    ADDI            reduce using rule 15 (TAG -> ID TWOP .)
+    ORI             reduce using rule 15 (TAG -> ID TWOP .)
+    LUI             reduce using rule 15 (TAG -> ID TWOP .)
+    JR              reduce using rule 15 (TAG -> ID TWOP .)
+
+
+state 18
+
+    (1) A -> TAG ADD REG . COMA REG COMA REG A
+
+    COMA            shift and go to state 31
+
+
+state 19
+
+    (2) A -> TAG SUB REG . COMA REG COMA REG A
+
+    COMA            shift and go to state 32
+
+
+state 20
+
+    (3) A -> TAG AND REG . COMA REG COMA REG A
+
+    COMA            shift and go to state 33
+
+
+state 21
+
+    (4) A -> TAG OR REG . COMA REG COMA REG A
+
+    COMA            shift and go to state 34
+
+
+state 22
+
+    (5) A -> TAG SLT REG . COMA REG COMA REG A
+
+    COMA            shift and go to state 35
+
+
+state 23
+
+    (6) A -> TAG LW REG . COMA IMME OPENPAR REG CLOSEPAR A
+
+    COMA            shift and go to state 36
+
+
+state 24
+
+    (7) A -> TAG SW REG . COMA IMME OPENPAR REG CLOSEPAR A
+
+    COMA            shift and go to state 37
+
+
+state 25
+
+    (8) A -> TAG BEQ REG . COMA REG COMA ID A
+
+    COMA            shift and go to state 38
+
+
+state 26
+
+    (9) A -> TAG J ID . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 39
+
+state 27
+
+    (10) A -> TAG ADDI REG . COMA REG COMA IMME A
+
+    COMA            shift and go to state 40
+
+
+state 28
+
+    (11) A -> TAG ORI REG . COMA REG COMA IMME A
+
+    COMA            shift and go to state 41
+
+
+state 29
+
+    (12) A -> TAG LUI REG . COMA IMME A
+
+    COMA            shift and go to state 42
+
+
+state 30
+
+    (13) A -> TAG JR REG . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 43
+
+state 31
+
+    (1) A -> TAG ADD REG COMA . REG COMA REG A
+
+    REG             shift and go to state 44
+
+
+state 32
+
+    (2) A -> TAG SUB REG COMA . REG COMA REG A
+
+    REG             shift and go to state 45
+
+
+state 33
+
+    (3) A -> TAG AND REG COMA . REG COMA REG A
+
+    REG             shift and go to state 46
+
+
+state 34
+
+    (4) A -> TAG OR REG COMA . REG COMA REG A
+
+    REG             shift and go to state 47
+
+
+state 35
+
+    (5) A -> TAG SLT REG COMA . REG COMA REG A
+
+    REG             shift and go to state 48
+
+
+state 36
+
+    (6) A -> TAG LW REG COMA . IMME OPENPAR REG CLOSEPAR A
+
+    IMME            shift and go to state 49
+
+
+state 37
+
+    (7) A -> TAG SW REG COMA . IMME OPENPAR REG CLOSEPAR A
+
+    IMME            shift and go to state 50
+
+
+state 38
+
+    (8) A -> TAG BEQ REG COMA . REG COMA ID A
+
+    REG             shift and go to state 51
+
+
+state 39
+
+    (9) A -> TAG J ID A .
+
+    $end            reduce using rule 9 (A -> TAG J ID A .)
+
+
+state 40
+
+    (10) A -> TAG ADDI REG COMA . REG COMA IMME A
+
+    REG             shift and go to state 52
+
+
+state 41
+
+    (11) A -> TAG ORI REG COMA . REG COMA IMME A
+
+    REG             shift and go to state 53
+
+
+state 42
+
+    (12) A -> TAG LUI REG COMA . IMME A
+
+    IMME            shift and go to state 54
+
+
+state 43
+
+    (13) A -> TAG JR REG A .
+
+    $end            reduce using rule 13 (A -> TAG JR REG A .)
+
+
+state 44
+
+    (1) A -> TAG ADD REG COMA REG . COMA REG A
+
+    COMA            shift and go to state 55
+
+
+state 45
+
+    (2) A -> TAG SUB REG COMA REG . COMA REG A
+
+    COMA            shift and go to state 56
+
+
+state 46
+
+    (3) A -> TAG AND REG COMA REG . COMA REG A
+
+    COMA            shift and go to state 57
+
+
+state 47
+
+    (4) A -> TAG OR REG COMA REG . COMA REG A
+
+    COMA            shift and go to state 58
+
+
+state 48
+
+    (5) A -> TAG SLT REG COMA REG . COMA REG A
+
+    COMA            shift and go to state 59
+
+
+state 49
+
+    (6) A -> TAG LW REG COMA IMME . OPENPAR REG CLOSEPAR A
+
+    OPENPAR         shift and go to state 60
+
+
+state 50
+
+    (7) A -> TAG SW REG COMA IMME . OPENPAR REG CLOSEPAR A
+
+    OPENPAR         shift and go to state 61
+
+
+state 51
+
+    (8) A -> TAG BEQ REG COMA REG . COMA ID A
+
+    COMA            shift and go to state 62
+
+
+state 52
+
+    (10) A -> TAG ADDI REG COMA REG . COMA IMME A
+
+    COMA            shift and go to state 63
+
+
+state 53
+
+    (11) A -> TAG ORI REG COMA REG . COMA IMME A
+
+    COMA            shift and go to state 64
+
+
+state 54
+
+    (12) A -> TAG LUI REG COMA IMME . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 65
+
+state 55
+
+    (1) A -> TAG ADD REG COMA REG COMA . REG A
+
+    REG             shift and go to state 66
+
+
+state 56
+
+    (2) A -> TAG SUB REG COMA REG COMA . REG A
+
+    REG             shift and go to state 67
+
+
+state 57
+
+    (3) A -> TAG AND REG COMA REG COMA . REG A
+
+    REG             shift and go to state 68
+
+
+state 58
+
+    (4) A -> TAG OR REG COMA REG COMA . REG A
+
+    REG             shift and go to state 69
+
+
+state 59
+
+    (5) A -> TAG SLT REG COMA REG COMA . REG A
+
+    REG             shift and go to state 70
+
+
+state 60
+
+    (6) A -> TAG LW REG COMA IMME OPENPAR . REG CLOSEPAR A
+
+    REG             shift and go to state 71
+
+
+state 61
+
+    (7) A -> TAG SW REG COMA IMME OPENPAR . REG CLOSEPAR A
+
+    REG             shift and go to state 72
+
+
+state 62
+
+    (8) A -> TAG BEQ REG COMA REG COMA . ID A
+
+    ID              shift and go to state 73
+
+
+state 63
+
+    (10) A -> TAG ADDI REG COMA REG COMA . IMME A
+
+    IMME            shift and go to state 74
+
+
+state 64
+
+    (11) A -> TAG ORI REG COMA REG COMA . IMME A
+
+    IMME            shift and go to state 75
+
+
+state 65
+
+    (12) A -> TAG LUI REG COMA IMME A .
+
+    $end            reduce using rule 12 (A -> TAG LUI REG COMA IMME A .)
+
+
+state 66
+
+    (1) A -> TAG ADD REG COMA REG COMA REG . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 76
+
+state 67
+
+    (2) A -> TAG SUB REG COMA REG COMA REG . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 77
+
+state 68
+
+    (3) A -> TAG AND REG COMA REG COMA REG . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 78
+
+state 69
+
+    (4) A -> TAG OR REG COMA REG COMA REG . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 79
+
+state 70
+
+    (5) A -> TAG SLT REG COMA REG COMA REG . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 80
+
+state 71
+
+    (6) A -> TAG LW REG COMA IMME OPENPAR REG . CLOSEPAR A
+
+    CLOSEPAR        shift and go to state 81
+
+
+state 72
+
+    (7) A -> TAG SW REG COMA IMME OPENPAR REG . CLOSEPAR A
+
+    CLOSEPAR        shift and go to state 82
+
+
+state 73
+
+    (8) A -> TAG BEQ REG COMA REG COMA ID . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 83
+
+state 74
+
+    (10) A -> TAG ADDI REG COMA REG COMA IMME . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 84
+
+state 75
+
+    (11) A -> TAG ORI REG COMA REG COMA IMME . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 85
+
+state 76
+
+    (1) A -> TAG ADD REG COMA REG COMA REG A .
+
+    $end            reduce using rule 1 (A -> TAG ADD REG COMA REG COMA REG A .)
+
+
+state 77
+
+    (2) A -> TAG SUB REG COMA REG COMA REG A .
+
+    $end            reduce using rule 2 (A -> TAG SUB REG COMA REG COMA REG A .)
+
+
+state 78
+
+    (3) A -> TAG AND REG COMA REG COMA REG A .
+
+    $end            reduce using rule 3 (A -> TAG AND REG COMA REG COMA REG A .)
+
+
+state 79
+
+    (4) A -> TAG OR REG COMA REG COMA REG A .
+
+    $end            reduce using rule 4 (A -> TAG OR REG COMA REG COMA REG A .)
+
+
+state 80
+
+    (5) A -> TAG SLT REG COMA REG COMA REG A .
+
+    $end            reduce using rule 5 (A -> TAG SLT REG COMA REG COMA REG A .)
+
+
+state 81
+
+    (6) A -> TAG LW REG COMA IMME OPENPAR REG CLOSEPAR . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 86
+
+state 82
+
+    (7) A -> TAG SW REG COMA IMME OPENPAR REG CLOSEPAR . A
+    (1) A -> . TAG ADD REG COMA REG COMA REG A
+    (2) A -> . TAG SUB REG COMA REG COMA REG A
+    (3) A -> . TAG AND REG COMA REG COMA REG A
+    (4) A -> . TAG OR REG COMA REG COMA REG A
+    (5) A -> . TAG SLT REG COMA REG COMA REG A
+    (6) A -> . TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (7) A -> . TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A
+    (8) A -> . TAG BEQ REG COMA REG COMA ID A
+    (9) A -> . TAG J ID A
+    (10) A -> . TAG ADDI REG COMA REG COMA IMME A
+    (11) A -> . TAG ORI REG COMA REG COMA IMME A
+    (12) A -> . TAG LUI REG COMA IMME A
+    (13) A -> . TAG JR REG A
+    (14) A -> .
+    (15) TAG -> . ID TWOP
+    (16) TAG -> .
+
+    $end            reduce using rule 14 (A -> .)
+    ID              shift and go to state 3
+    ADD             reduce using rule 16 (TAG -> .)
+    SUB             reduce using rule 16 (TAG -> .)
+    AND             reduce using rule 16 (TAG -> .)
+    OR              reduce using rule 16 (TAG -> .)
+    SLT             reduce using rule 16 (TAG -> .)
+    LW              reduce using rule 16 (TAG -> .)
+    SW              reduce using rule 16 (TAG -> .)
+    BEQ             reduce using rule 16 (TAG -> .)
+    J               reduce using rule 16 (TAG -> .)
+    ADDI            reduce using rule 16 (TAG -> .)
+    ORI             reduce using rule 16 (TAG -> .)
+    LUI             reduce using rule 16 (TAG -> .)
+    JR              reduce using rule 16 (TAG -> .)
+
+    TAG                            shift and go to state 2
+    A                              shift and go to state 87
+
+state 83
+
+    (8) A -> TAG BEQ REG COMA REG COMA ID A .
+
+    $end            reduce using rule 8 (A -> TAG BEQ REG COMA REG COMA ID A .)
+
+
+state 84
+
+    (10) A -> TAG ADDI REG COMA REG COMA IMME A .
+
+    $end            reduce using rule 10 (A -> TAG ADDI REG COMA REG COMA IMME A .)
+
+
+state 85
+
+    (11) A -> TAG ORI REG COMA REG COMA IMME A .
+
+    $end            reduce using rule 11 (A -> TAG ORI REG COMA REG COMA IMME A .)
+
+
+state 86
+
+    (6) A -> TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A .
+
+    $end            reduce using rule 6 (A -> TAG LW REG COMA IMME OPENPAR REG CLOSEPAR A .)
+
+
+state 87
+
+    (7) A -> TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A .
+
+    $end            reduce using rule 7 (A -> TAG SW REG COMA IMME OPENPAR REG CLOSEPAR A .)
+
