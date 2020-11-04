@@ -73,7 +73,7 @@ def t_REG(t):
     return t
 
 def t_IMME(t):
-    r'0x[0-9]+'
+    r'0x[a-zA-Z_0-9]+'
     t.type = 'IMME'
     return t
 
@@ -109,7 +109,7 @@ def p_MAIN(p):
     A : TAG JR REG A
     |
     '''
-    global result
+
     if(len(p) > 1):
         inst = ""
         if(not isRType(p[2])):
@@ -167,8 +167,7 @@ def p_MAIN(p):
             inst += funct[p[2]]
         inst = "arr(" + str(p.lineno(2) - 1) + ") <= \"" + inst + "\";"
         print(inst)
-        result += inst + "\n"
-        
+        out.write(inst+"\n")
 def p_TAG(p):
     '''
     TAG : ID TWOP
@@ -187,15 +186,10 @@ parser = yacc.yacc()
 file1 = open('archivo.txt','r')
 info = file1.read()
 out = open("o.txt","w")
-result = ""
-
 parser.parse(info)
-out.write(result)
 out.close()
 file1.close()
 print(tags)
-
-
 
 '''
 Lines = file1.readlines()
@@ -207,6 +201,3 @@ for line in Lines:
     break
 parser.parse(s)
 '''
-
-
-
