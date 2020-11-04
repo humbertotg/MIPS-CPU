@@ -185,10 +185,14 @@ parser = yacc.yacc()
 
 file1 = open('archivo.txt','r')
 info = file1.read()
+
 out = open("o.txt","w")
 parser.parse(info)
+
 out.close()
 file1.close()
+
+
 print(tags)
 
 '''
