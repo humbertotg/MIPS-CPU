@@ -18,8 +18,6 @@ browser = webdriver.Chrome(executable_path=r'D:\chromedriver_win3279\chromedrive
 browser.get('https://www.eg.bucknell.edu/~csci320/mips_web/')
 instructionField = browser.find_element_by_id("instruction")
 convertButton = browser.find_element_by_id("convert")
-testIstr = "add $r8, $r0, $r0"
-testIstr2 = "add $r8, $r0, $r2"
 
 saltos = {}
 pasada1 = 0
@@ -39,13 +37,13 @@ vacio = ""
 for x in f:
     
     if(x.count('j') and x.count('jr') == 0):
-        x = saltos[x.replace('j',' ').strip()]
-        x = "j 0x"+str(x)
+        x = hex(str(saltos[x.replace('j',' ').strip()]))
+        x = "j "+x
     elif(x.count(':')):
         x = x[x.find(':')+1::].strip()
     
     elif(x.lower().count('beq')):
-        x = x[0:x.rfind(',')+2] + "0x" + str(saltos[x[x.rfind(',')+1::].strip()])
+        x = x[0:x.rfind(',')+2]  + hex(str(saltos[x[x.rfind(',')+1::].strip()]))
     vacio += getTranslation(x,pasada2)+"\n"
     print(getTranslation(x,pasada2))
     pasada2+=1
@@ -57,5 +55,6 @@ for i in range(pasada2,32):
     print("arr(" + str(i) + ") <= \"00000000000000000000000000000000\";")
         
 f.close()
+out.close()
 print(saltos)
 

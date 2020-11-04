@@ -1,7 +1,3 @@
-#Humberto Tello A01196965
-#Lenguajes y Traductores
-#Entrega Proyecto final 6
-
 import ply.lex as lex
 import ply.yacc as yacc
 
